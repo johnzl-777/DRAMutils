@@ -1,2 +1,3 @@
 # DRAM Read Write
-!UNDER CONSTRUCTION!
+!UNDER CONSTRUCTION! 
+Documentation will be put up soon
