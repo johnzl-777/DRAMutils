@@ -24,7 +24,7 @@
  * Sets up the pins to allow the Arduino to properly output
  * Control, address, and data signals
  */
-void init_pins(void)
+void DRAM_setup(void)
 {
   DDRD = 0b11111100; //Set digital pins 2-7 as lower part of address
   DDRC = 0b00000111; //Set analog pins A0-A2 as upper part of address
@@ -50,7 +50,7 @@ void set_addr(uint16_t addr)
  * Given a memory address using the mem_addr type and data as a boolean
  * Will write the boolean to that location on the DRAM chip
  */
-void write_data(mem_addr addr, bool data)
+void DRAM_write(mem_addr addr, bool data)
 {
   RAS_HIGH();             //Row Address Strobe (RAS) set HIGH
   CAS_HIGH();             //Column Address Strobe (CAS) set HIGH
@@ -76,7 +76,7 @@ void write_data(mem_addr addr, bool data)
  * Given a memory address of the mem_addr type
  * Will return the data at that location as a boolean
  */
-bool read_data(mem_addr addr)
+bool DRAM_read(mem_addr addr)
 {
   RAS_HIGH();             //Row Address Strobe (RAS) set HIGH
   CAS_HIGH();             //Column Address Strobe (CAS) set HIGH
@@ -102,7 +102,7 @@ bool read_data(mem_addr addr)
  * Refresh function:
  * given an address, the function will refresh all data in the row
  */
-void refresh(mem_addr addr)
+void DRAM_refresh(mem_addr addr)
 {
   set_addr(addr.row);   //Set row address on pins
 

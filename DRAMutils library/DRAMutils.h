@@ -19,27 +19,27 @@
  * Sets up the pins to allow the Arduino to properly output
  * Control, address, and data signals
  */
-void init_pins(void);
+void DRAM_setup(void);
 
 /*
  * Write Data function:
  * Given a memory address using the mem_addr type and data as a boolean
  * Will write the boolean to that location on the DRAM chip
  */
-void write_data(mem_addr addr, bool data);
+void DRAM_write(mem_addr addr, bool data);
 
 /*
  * Read Data function:
  * Given a memory address of the mem_addr type
  * Will return the data at that location as a boolean
  */
-bool read_data(mem_addr addr);
+bool DRAM_read(mem_addr addr);
 
 /*
  * Refresh function:
  * Given a row address
  * Will refresh all data held in that row
  */
-void refresh(mem_addr addr);
+void DRAM_refresh(mem_addr addr);
 
 #endif

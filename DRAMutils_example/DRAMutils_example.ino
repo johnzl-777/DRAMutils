@@ -8,14 +8,17 @@
 void setup() 
 {
   
-  init_pins();   //a function of the DRAMutils library, sets up pins on the Arduino 
+  DRAM_setup();  //a function of the DRAMutils library, sets up pins on the Arduino 
+
+  Serial.begin(9600); //Set Serial output to 9600 Baud (standard)
 
 }
+
+int delay_time = 0;   //A variable to hold the delay time is created and set to 0
 
 void loop() 
 {
   
-  int delay_time = 0;   //A variable to hold the delay time is created and set to 0
   char print_str[20];   //A buffer is created for use with sprintf() to allow formatted string printing
 
   /*
@@ -29,12 +32,12 @@ void loop()
    * write_data() is also part of the DRAMutils library,
    * accepting an address in the mem_addr type and a boolean for the "0" or "1" to be written
    */
-  write_data(address, 0);   //0 written to specified address  
+  DRAM_write(address, 0);   //0 written to specified address  
 
   
   delay(delay_time);        //Read operation is delayed for "delay_time" milliseconds 
   
-  if(read_data(address) == 0)
+  if(DRAM_read(address) == 0)
   {
     //If the data read is still 0...
 
@@ -42,9 +45,9 @@ void loop()
      * Data is first read from the DRAM chip using the read_data function, part of DRAMutils
      * Given an address using the mem_addr type it will return the bit read as a boolean
      */
-    sprintf(print_str, "%d \nDELAY TIME: %d", read_data(address), delay_time); 
+    sprintf(print_str, "%d \nDELAY TIME: %d", DRAM_read(address), delay_time); 
     Serial.println(print_str); //Print current delay time
-    ++delay_time;              //Increment delay_time by 1 millisecond
+    delay_time += 1;              //Increment delay_time by 1 millisecond
   }
   else
   {
