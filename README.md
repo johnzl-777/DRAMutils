@@ -17,6 +17,8 @@ The chip in question is the Hitachi HM50256-15 which has:
 * 1 Vcc (+5V) pin
 * 1 Vss (GND) pin
 
+![DRAM pins](https://github.com/johnzl-777/DRAMUtils/blob/master/Schematics/DRAM%20chip%20layout.png)
+
 More information about the chip can be found here:
 [Hitachi HM50256-15 Datasheet](http://www.minuszerodegrees.net/memory/41256/datasheet_HM50256.pdf)
 
