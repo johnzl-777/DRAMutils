@@ -38,9 +38,9 @@ void loop()
     addr.col += 1;                                //Increment column address by 1
   }
 
-  delay(7000);           //Delay all operations for 7 seconds
+  delay(6000);           //Delay all operations for 7 seconds
   DRAM_refresh(addr);    //Refresh memory
-  delay(7000);           //Delay all operations for 7 seconds
+  delay(6000);           //Delay all operations for 7 seconds
   DRAM_refresh(addr);    //Refesh memory
 
   /*

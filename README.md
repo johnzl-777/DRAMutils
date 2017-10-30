@@ -11,7 +11,7 @@ chips
   * [Refresh Operation](#Refresh-Operation)
 * [How to Use It](#How-to-Use-It)
 * [To-Do](#To-Do)
-  
+
 
 ## How it Works <a name = "How-it-Works"></a>
 
@@ -180,7 +180,7 @@ The steps that allow a Refresh operation are as follows:
 
 The `DRAM_refresh` function included in the DRAMutils library performs such
 an operation and can be invoked between `DRAM_write` and `DRAM_read` operations
-should certain data require storage for more than ~7-8 seconds ( in the case
+should certain data require storage for more than ~6-7 seconds ( in the case
 of the DRAM chip this library was designed for )
 
 An example of its usage can be seen below:
@@ -199,9 +199,9 @@ void loop()
 
   DRAM_write(memory_address, data_write); //Write data to address
 
-  delay(7000);                //Delay read operation for 7 seconds
+  delay(6000);                //Delay read operation for 7 seconds
   refresh(memory_address);    //Refresh data at memory address
-  delay(7000);                //Delay read for another 7 seconds
+  delay(6000);                //Delay read for another 7 seconds
 
   data_read = DRAM_read(memory_address);  //Store data read in variable
 }
@@ -227,4 +227,4 @@ some of the things I'm considering:
   * Implement a "master" read/write function (can read and write any kind of data)
 
 * Hardware
-  * Provide the option to use a 7400-based shift register to reduce pin count 
+  * Provide the option to use a 7400-based shift register to reduce pin count
