@@ -61,10 +61,63 @@ void setup()
 
 ```
 
-### Read Operation
-
-The timing diagram below
-
 ### Write Operation
 
+The timing diagram below shows how a write operation is performed
+
+![Write Timing Diagram](https://github.com/johnzl-777/DRAMUtils/blob/master/Timing%20Diagrams/IBM%20Write%20Timing%20Diagram.png)
+
+The steps that allow a write operation to occur are as follows:
+1. `RAS` and `CAS` must be set HIGH first. `WE` can be LOW or HIGH when
+starting but for simplicity is set LOW in the beginning and must be set LOW
+later (if it is HIGH) to signal a write operation
+2. A row address is applied to the address bus
+3. `RAS` must go from HIGH to LOW
+4. A column address is applied to the address bus
+5. The desired data to be written is sent on the Data_in pin
+6. `CAS` must go from HIGH to LOW
+7. `RAS` and `CAS` are set to their original HIGH states and the operation is
+complete
+
+The `DRAM_write` function included in the DRAMutils library allows you to
+write a bit to the DRAM chip given a memory address and the desired bit to
+be written, expressed as a boolean.
+
+DRAMutils defines a variable type known as `mem_addr` which is a `struct`
+holding a row and column address as type `uint16_t`. The address that you
+would like to write to can be expressed as such:
+
+```Arduino
+void loop()
+{
+  mem_addr address = {.row = 0x076, .col = 0x1AA}
+}
+```
+
+Thus, an example of a full write operation can be seen below:
+
+```Arduino
+void setup()
+{
+  DRAM_setup(); //sets up Arduino pins
+}
+void loop()
+{
+  mem_addr write_addres = {.row = 0x076, .col = 0x1AA} // Declare DRAM address
+  bool Data = 0;  //Data to be written
+
+  DRAM_write(write_addres, Data); //Data written to specified address
+}
+```
+
+
+### Read Operation
+
+The timing diagram below shows how a read operation is performed
+
+![Read Timing Diagram](https://github.com/johnzl-777/DRAMUtils/blob/master/Timing%20Diagrams/IBM%20Read%20Timing%20Diagram.png)
+
 ### Refresh Operation
+
+The timing diagram below shows how a standard Row refresh is performed
+![Row Refresh](https://github.com/johnzl-777/DRAMUtils/blob/master/Timing%20Diagrams/HM50256%20Original%20Refresh%20Timing%20Diagram.png)
