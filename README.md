@@ -115,7 +115,7 @@ void setup()
 
 void loop()
 {
-  mem_addr write_addres = {.row = 0x076, .col = 0x1AA} // Declare DRAM address
+  mem_addr write_addres = {.row = 0x076, .col = 0x1AA}; // Declare DRAM address
   bool Data = 0;  //Data to be written
 
   DRAM_write(write_addres, Data); //Data written to specified address
@@ -193,7 +193,7 @@ void setup()
 
 void loop()
 {
-  mem_addr memory_addres = {.row = 0x077, 0x011}; //Declare memory address
+  mem_addr memory_addres = {.row = 0x077, .col = 0x011}; //Declare memory address
   bool data_write = 0;  //Data to be written
   bool data_read;       //Storage for data read
 
