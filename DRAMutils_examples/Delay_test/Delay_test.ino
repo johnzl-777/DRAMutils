@@ -1,6 +1,7 @@
 /*
- * This program demos the DRAMutils library
- * It tests the maximum amount of a time a DRAM cell can hold one bit before needing to be refreshed
+ * This program demos the DRAMutils DRAM_write() and DRAM_read() functions
+ * It tests the maximum amount of a time a DRAM cell can hold one bit before it is lost and needs to be refreshed
+ * 
  */
  
 #include <DRAMutils.h> //Include the DRAMutils library
