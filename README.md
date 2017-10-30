@@ -3,7 +3,17 @@
 A Library that allows the Arduino UNO to read/write data to older DIP DRAM
 chips
 
-## How it Works
+## Table of Contents
+* [How it Works](#How-it-Works)
+  * [Setup](#Setup)
+  * [Write Operation](#Write-Operation)
+  * [Read Operation](#Read-Operation)
+  * [Refresh Operation](#Refresh-Operation)
+* [How to Use It](#How-to-Use-It)
+* [To-Do](#To-Do)
+  
+
+## How it Works <a name = "How-it-Works"></a>
 
 Before explaining how the functions in the library work it is necessary to
 briefly describe the layout of the DRAM chip.
@@ -34,7 +44,7 @@ The timing diagrams used to explain each function as well as further information
 on the previously mentioned Read-Modify-Write and EDO modes can be found here:
 [Understanding DRAM operation](https://www.ece.cmu.edu/~ece548/localcpy/dramop.pdf)
 
-### Setup
+### Setup <a name = "Setup"></a>
 
 Prior to being able to perform any operation on the DRAM chip, it must first
 be wired correctly to the Arduino. The setup should be as follows:
@@ -61,7 +71,7 @@ void setup()
 
 ```
 
-### Write Operation
+### Write Operation <a name = "Write-Operation"></a>
 
 The timing diagram below shows how a write operation is performed
 
@@ -113,7 +123,7 @@ void loop()
 ```
 
 
-### Read Operation
+### Read Operation <a name = "Read-Operation"></a>
 
 The timing diagram below shows how a read operation is performed
 
@@ -157,7 +167,7 @@ It should be noted that you should only read a memory address that has already
 been written to. So in the example above there would be an accompanying
 `DRAM_write` call before `DRAM_read`
 
-### Refresh Operation
+### Refresh Operation <a name = "Refresh-Operation"></a>
 
 The timing diagram below shows how a standard Row refresh is performed
 ![Row Refresh](https://github.com/johnzl-777/DRAMutils/blob/master/Timing%20Diagrams/HM50256%20Original%20Refresh%20Timing%20Diagram.png)
@@ -196,14 +206,14 @@ void loop()
   data_read = DRAM_read(memory_address);  //Store data read in variable
 }
 ```
-## How to use it
+## How to Use It <a name = "How-to-Use-It"></a>
 
 To use the library, copy the `DRAMutils.h` and `DRAMutils.cpp` file
 to the `libraries` folder in the `Arduino` directory. Usually, the `Arduino`
 directory is in your `Documents` folder but this may vary depending on your
 setup.
 
-## To-do
+## To-Do <a name = "To-Do"></a>
 
 As mentioned before, there are some functions that haven't been implemented
 in the library but I would like to implement soon. The Serial DRAM R/W program
