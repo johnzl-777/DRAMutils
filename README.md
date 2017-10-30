@@ -195,3 +195,26 @@ void loop()
 
   data_read = DRAM_read(memory_address);  //Store data read in variable
 }
+```
+## How to use it
+
+To use the library, copy the `DRAMutils.h` and `DRAMutils.cpp` file
+to the `libraries` folder in the `Arduino` directory. Usually, the `Arduino`
+directory is in your `Documents` folder but this may vary depending on your
+setup.
+
+## To-do
+
+As mentioned before, there are some functions that haven't been implemented
+in the library but I would like to implement soon. The Serial DRAM R/W program
+in the examples folder already hints at one of them but here's a list of
+some of the things I'm considering:
+
+* Software
+  * Implement Read-Modify-Write function
+  * Implement Page Mode Read and Write functions
+  * Test CAS before RAS refresh and Hidden Refresh Cycle
+  * Implement a "master" read/write function (can read and write any kind of data)
+
+* Hardware
+  * Provide the option to use a 7400-based shift register to reduce pin count 
