@@ -265,6 +265,7 @@ void loop()
 
   data_read = DRAM_rmw(memory_address, 1); //Read data at memory and write data
 }
+```
 
 ## How to Use It <a name = "How-to-Use-It"></a>
 
