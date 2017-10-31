@@ -102,7 +102,7 @@ would like to write to can be expressed as such:
 ```Arduino
 void loop()
 {
-  mem_addr address = {.row = 0x076, .col = 0x1AA}
+  mem_addr address = {.row = 0x076, .col = 0x1AA};
 }
 ```
 
