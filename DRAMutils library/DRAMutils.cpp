@@ -100,7 +100,7 @@ bool DRAM_read(mem_addr addr)
 
 /*
  * Refresh function:
- * given an address, the function will refresh all data in the row
+ * given an address, the function will refresh all data in a row
  */
 void DRAM_refresh(mem_addr addr)
 {
@@ -108,4 +108,36 @@ void DRAM_refresh(mem_addr addr)
 
   RAS_LOW();            //Set Row Address Strobe (RAS) LOW
   RAS_HIGH();           //Set RAS back HIGH
+}
+
+/*
+ * Read-Modify-Write function:
+ * Given an address of type mem_addr and data as a boolean
+ * Will return current contents at address and write new data at address
+ */
+
+ bool DRAM_rmw(mem_addr addr, bool data)
+{
+  RAS_HIGH();             //Row Address Strobe (RAS) set HIGH
+  CAS_HIGH();             //Column Address Strobe (CAS) set HIGH
+  WE_HIGH();              //Write Enable (WE) set HIGH
+
+  set_addr(addr.row);     //Set desired row address out on pins
+
+  RAS_LOW();              //RAS set LOW
+
+  set_addr(addr.col);     //Set desired Column Address
+
+  CAS_LOW();              //CAS set LOW
+
+  digitalWrite(9, data);  //Data sent to D_in on chip through Digital pin 9
+
+  WE_LOW();               //WE set LOW
+  WE_HIGH();              //WE set back HIGH
+
+  return digitalRead(10); //Data read from D_out on chip through Digital pin 10
+
+  RAS_HIGH();             //RAS set back HIGH
+  CAS_HIGH();             //CAS set back HIGH 
+
 }

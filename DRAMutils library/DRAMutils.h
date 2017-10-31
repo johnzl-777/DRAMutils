@@ -42,4 +42,16 @@ bool DRAM_read(mem_addr addr);
  */
 void DRAM_refresh(mem_addr addr);
 
+
+// **************************
+// * Special DRAM functions *
+// **************************
+
+/*
+ * Read-Modify-Write function:
+ * Given a memory address of type mem_addr and data as a boolean
+ * Will return current contents at address and write new data at address
+ */
+bool DRAM_rmw(mem_addr addr, bool data);
+
 #endif

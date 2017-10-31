@@ -193,7 +193,7 @@ void setup()
 
 void loop()
 {
-  mem_addr memory_addres = {.row = 0x077, .col = 0x011}; //Declare memory address
+  mem_addr memory_address = {.row = 0x077, .col = 0x011}; //Declare memory address
   bool data_write = 0;  //Data to be written
   bool data_read;       //Storage for data read
 
@@ -206,6 +206,66 @@ void loop()
   data_read = DRAM_read(memory_address);  //Store data read in variable
 }
 ```
+
+### Read-Modify-Write
+
+The timing diagram below shows how a Read-Modify-Write operation is performed.
+![Read-Modify-Write](https://github.com/johnzl-777/DRAMutils/blob/master/Timing%20Diagrams/HM50256%20Read-Modify-Write%20Timing%20Diagram.png)
+
+Read-Modify-Write is a special operation in DRAM that allows a given memory
+location to first be read, then written to without incurring the time penalty
+of having to reapply any of the addresses or perform one single read, then
+one single write operation afterwards which can be time consuming.
+
+**WARNING**: The Read-Modify-Write cycle for the HM50256-15 chip seems to be
+slightly different from the one displayed in the IBM "Understanding DRAM"
+PDF mentioned earlier in [How it Works](#How-it-Works). The functions
+provided in this library were mostly based off the IBM PDF to ensure compatibility
+with other DRAM chips but this cycle seems specific to the HM50256-15 chip.
+
+Thus, the explanation below for how it works is specific to the HM50256-15 chip.
+Please refer to the IBM PDF for a possibly more universal display of how the
+operation works.
+
+The steps for a Read-Modify-Write operation are as follows:
+
+1. `RAS` and `CAS` must be HIGH in the beginning. `WE` can be LOW or HIGH
+but for the sake of convenience is set HIGH in the beginning.
+2. The row address is applied to the address bus
+3. `RAS` is set LOW
+4. The column address is applied to the address bus
+5. `CAS` is set LOW
+6. Data to be written is applied to the Data In pin
+7. `WE` is set LOW
+8. `WE` is set HIGH
+9. Data to be read is set on the Data Out pin
+10. `RAS` is set back HIGH
+11. `CAS` is set back HIGH
+
+The timing makes it seem as if it is reading the data you just wrote but in reality
+it is reading the data that was already there prior.
+
+The DRAMutils `DRAM_rmw` function allows you to perform a Read-Modify-Write
+operation right after any read, write, or refresh operation. An example
+of its usage can be seen below:
+
+```Arduino
+void setup()
+{
+  DRAM_setup();   //Setup pins for interface with DRAM
+}
+
+void loop()
+{
+  mem_addr memory_address = {.row = 0x1AA, .col = 0x1AA}; //Set memory address
+  bool write_data = 0;  //Data to be written
+  bool data_read;       //Storage for data read
+
+  DRAM_write(memory_address, 0);    //Write a 0 to memory address indicated
+
+  data_read = DRAM_rmw(memory_address, 1); //Read data at memory and write data
+}
+
 ## How to Use It <a name = "How-to-Use-It"></a>
 
 To use the library, copy the `DRAMutils.h` and `DRAMutils.cpp` file
@@ -221,7 +281,7 @@ in the examples folder already hints at one of them but here's a list of
 some of the things I'm considering:
 
 * Software
-  * Implement Read-Modify-Write function
+  * ~~Implement Read-Modify-Write function~~ Read-Modify-Write successfully added
   * Implement Page Mode Read and Write functions
   * Test CAS before RAS refresh and Hidden Refresh Cycle
   * Implement a "master" read/write function (can read and write any kind of data)
