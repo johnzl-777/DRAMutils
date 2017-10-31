@@ -9,6 +9,7 @@ chips
   * [Write Operation](#Write-Operation)
   * [Read Operation](#Read-Operation)
   * [Refresh Operation](#Refresh-Operation)
+  * [Read-Modify-Write](#Read-Modify-Write)
 * [How to Use It](#How-to-Use-It)
 * [To-Do](#To-Do)
 
@@ -207,7 +208,7 @@ void loop()
 }
 ```
 
-### Read-Modify-Write
+### Read-Modify-Write <a name = "Read-Modify-Write"></a>
 
 The timing diagram below shows how a Read-Modify-Write operation is performed.
 ![Read-Modify-Write](https://github.com/johnzl-777/DRAMutils/blob/master/Timing%20Diagrams/HM50256%20Read-Modify-Write%20Timing%20Diagram.png)
