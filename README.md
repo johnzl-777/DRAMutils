@@ -28,7 +28,7 @@ The chip in question is the Hitachi HM50256-15 which has:
 * 1 Vcc (+5V) pin
 * 1 Vss (GND) pin
 
-![DRAM pins](https://github.com/johnzl-777/DRAMutils/blob/master/Schematics/DRAM%20chip%20layout.png)
+![DRAM pins](https://github.com/johnzl-777/DRAMutils/blob/master/extras/Schematics/DRAM%20chip%20layout.png)
 
 More information about the chip can be found here:
 [Hitachi HM50256-15 Datasheet](http://www.minuszerodegrees.net/memory/41256/datasheet_HM50256.pdf)
@@ -76,7 +76,7 @@ void setup()
 
 The timing diagram below shows how a write operation is performed
 
-![Write Timing Diagram](https://github.com/johnzl-777/DRAMutils/blob/master/Timing%20Diagrams/IBM%20Write%20Timing%20Diagram.png)
+![Write Timing Diagram](https://github.com/johnzl-777/DRAMutils/blob/master/extras/Timing%20Diagrams/IBM%20Write%20Timing%20Diagram.png)
 
 The steps that allow a write operation to occur are as follows:
 
@@ -128,7 +128,7 @@ void loop()
 
 The timing diagram below shows how a read operation is performed
 
-![Read Timing Diagram](https://github.com/johnzl-777/DRAMutils/blob/master/Timing%20Diagrams/IBM%20Read%20Timing%20Diagram.png)
+![Read Timing Diagram](https://github.com/johnzl-777/DRAMutils/blob/master/extras/Timing%20Diagrams/IBM%20Read%20Timing%20Diagram.png)
 
 The steps that allow a read operation occurs as follows:
 
@@ -171,7 +171,7 @@ been written to. So in the example above there would be an accompanying
 ### Refresh Operation <a name = "Refresh-Operation"></a>
 
 The timing diagram below shows how a standard Row refresh is performed
-![Row Refresh](https://github.com/johnzl-777/DRAMutils/blob/master/Timing%20Diagrams/HM50256%20Original%20Refresh%20Timing%20Diagram.png)
+![Row Refresh](https://github.com/johnzl-777/DRAMutils/blob/master/extras/Timing%20Diagrams/HM50256%20Original%20Refresh%20Timing%20Diagram.png)
 
 The steps that allow a Refresh operation are as follows:
 
@@ -211,7 +211,7 @@ void loop()
 ### Read-Modify-Write <a name = "Read-Modify-Write"></a>
 
 The timing diagram below shows how a Read-Modify-Write operation is performed.
-![Read-Modify-Write](https://github.com/johnzl-777/DRAMutils/blob/master/Timing%20Diagrams/HM50256%20Read-Modify-Write%20Timing%20Diagram.png)
+![Read-Modify-Write](https://github.com/johnzl-777/DRAMutils/blob/master/extras/Timing%20Diagrams/HM50256%20Read-Modify-Write%20Timing%20Diagram.png)
 
 Read-Modify-Write is a special operation in DRAM that allows a given memory
 location to first be read, then written to without incurring the time penalty
@@ -270,10 +270,8 @@ void loop()
 
 ## How to Use It <a name = "How-to-Use-It"></a>
 
-To use the library, copy the `DRAMutils.h` and `DRAMutils.cpp` file
-to the `libraries` folder in the `Arduino` directory. Usually, the `Arduino`
-directory is in your `Documents` folder but this may vary depending on your
-setup.
+1. Download the library: https://github.com/johnzl-777/DRAMutils/archive/master.zip
+2. (In the Arduino IDE) Sketch > Include Library > Add .ZIP Library > select the downloaded file > Open
 
 ## To-Do <a name = "To-Do"></a>
 
